@@ -23,13 +23,13 @@ class Product {
 
     render = () => {
         return `
-        <div class="card" style="width: 22rem;">
+        <div class="card pt-3" style="width: 22rem;">
             <img class="card-img-top" src="${this.img}" alt="">
         <div class="card-body">
             <h3 class="card-title">${this.name}</h3>
             <p class="card-text">Giá: <span>${this.formatPrice(this.price)}</span></p>
             <p>Số lượng: <span>${this.quantity}</span></p>
-            <button class="btn btn-primary" onclick="handleUpdate(${this.id})">Sửa</button>
+            <button class="btn btn-primary" onclick="handleOpenUpdateModal(${this.id})">Sửa</button>
             <button class="btn btn-danger" onclick="handleDeleteProduct(${this.id})">Xóa</button>
         </div>    
     </div>`

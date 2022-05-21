@@ -22,7 +22,8 @@
             <div class="card-header">
                 <h3>Thêm/Sửa Sản Phẩm</h3>
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#productModal">
+                <button id="add-product" type="button" class="btn btn-primary" data-toggle="modal"
+                    data-target="#productModal" onclick="handleOpenModal()">
                     Thêm sản phẩm
                 </button>
 
@@ -32,7 +33,7 @@
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLongTitle">Thêm sản phẩm</h5>
+                                <h5 class="modal-title" id="longTitle">Thêm sản phẩm</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -90,9 +91,15 @@
                                         <textarea class="form-control" id="productDescription" rows="3"></textarea>
                                     </div>
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary" onclick="handleCreateProduct()"
-                                        data-toggle="modal" data-target="#productModal">Save
-                                        changes</button>
+                                    <button type="button" id="addBtn" class="btn btn-primary"
+                                        onclick="handleCreateProduct()" data-toggle="modal"
+                                        data-target="#productModal">Thêm</button>
+                                    <button type="button" id="updateBtn" class="btn btn-primary" data-toggle="modal"
+                                        data-target="#productModal">Cập nhật</button>
+
+
+
+
 
                                 </form>
                             </div>

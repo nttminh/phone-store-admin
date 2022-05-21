@@ -48,6 +48,21 @@ const renderProducts = (products) => {
     document.getElementById('available-products').innerHTML = availableProductsHTML;
 }
 
+const handleOpenModal = () => {
+    $('#longTitle').text('Thêm Sản Phẩm');
+    $('#addBtn').show()
+    $('#updateBtn').hide()
+
+    $('#name').val('');
+    $('#price').val('');
+    $('#screen').val('');
+    $('#backCamera').val('');
+    $('#frontCamera').val('');
+    $('#imgURL').val('');
+    $('#productDescription').val('');
+    $('#quantity').val('');
+}
+
 const handleCreateProduct = async () => {
     const name = document.getElementById('name').value.trim();
     const price = document.getElementById('price').value.trim();
@@ -91,7 +106,68 @@ const handleDeleteProduct = async (id) => {
     renderProducts(availableProducts);
 }
 
+const handleOpenUpdateModal = async (id) => {
+    const response = await axios.get(`${API_URL}/${id}`);
+    $('#productModal').modal('show');
+    $('#longTitle').text('Sửa Sản Phẩm');
+    $('#addBtn').hide()
+    $('#updateBtn').show()
 
+    document.getElementById('name').value = response.data.name;
+    document.getElementById('price').value = response.data.price;
+    document.getElementById('screen').value = response.data.screen;
+    document.getElementById('backCamera').value = response.data.backCamera;
+    document.getElementById('frontCamera').value = response.data.frontCamera;
+    document.getElementById('imgURL').value = response.data.img;
+    document.getElementById('productDescription').value = response.data.desc;
+    document.getElementById('brand').value = response.data.type;
+    document.getElementById('quantity').value = response.data.quantity;
+
+    $('#updateBtn').click(async () => {
+        handleUpdateProduct(id);
+    })
+
+
+}
+
+const handleUpdateProduct = async (id) => {
+    try {
+        const name = document.getElementById('name').value.trim();
+        const price = document.getElementById('price').value.trim();
+        const screen = document.getElementById('screen').value.trim();
+        const backCamera = document.getElementById('backCamera').value.trim();
+        const frontCamera = document.getElementById('frontCamera').value.trim();
+        const img = document.getElementById('imgURL').value.trim();
+        const desc = document.getElementById('productDescription').value.trim();
+        const type = document.getElementById('brand').value;
+        const quantity = document.getElementById('quantity').value;
+
+        const updatedProduct = {
+            "name": name,
+            "price": price,
+            "screen": screen,
+            "backCamera": backCamera,
+            "frontCamera": frontCamera,
+            "img": img,
+            "desc": desc,
+            "type": type,
+            "quantity": quantity
+        }
+
+        const response = await axios.put(`${API_URL}/${id}`, updatedProduct);
+        const updatedProductWithId = {
+            ...response.data,
+            id: id
+        }
+
+        const updatedProductIndex = availableProducts.findIndex(product => product.id == id);
+        availableProducts[updatedProductIndex] = new Product(updatedProductWithId.name, updatedProductWithId.price, updatedProductWithId.screen, updatedProductWithId.backCamera, updatedProductWithId.frontCamera, updatedProductWithId.img, updatedProductWithId.desc, updatedProductWithId.type, updatedProductWithId.id, updatedProductWithId.quantity);
+        renderProducts(availableProducts);
+    } catch (error) {
+        console.error(error);
+    }
+
+}
 
 
 
