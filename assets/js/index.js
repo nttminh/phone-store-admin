@@ -123,11 +123,9 @@ const handleOpenUpdateModal = async (id) => {
     document.getElementById('brand').value = response.data.type;
     document.getElementById('quantity').value = response.data.quantity;
 
-    $('#updateBtn').click(async () => {
+    $('#updateBtn').off('click').click(async () => {
         handleUpdateProduct(id);
     })
-
-
 }
 
 const handleUpdateProduct = async (id) => {
@@ -166,20 +164,6 @@ const handleUpdateProduct = async (id) => {
     } catch (error) {
         console.error(error);
     }
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 getProducts();
