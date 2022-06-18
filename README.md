@@ -1,5 +1,6 @@
 # phone-store-admin
-An admin panel to with CRUD
+An admin panel to with CRUD, for https://github.com/nttminh/phone-store
+
 <img width="1440" alt="image" src="https://user-images.githubusercontent.com/59038507/173183340-39bd1f80-5b04-4d48-baf1-7168b53fa41a.png">
 
 # How to start
